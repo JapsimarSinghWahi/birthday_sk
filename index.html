@@ -1,58 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Sumeet! 🎂</title>
-    <!-- Playful Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Our Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Animated background shapes -->
-    <div class="bg-shape bg-shape-1"></div>
-    <div class="bg-shape bg-shape-2"></div>
-    <div class="bg-shape bg-shape-3"></div>
 
-    <main class="container">
-        <!-- Intro Section -->
-        <section class="intro" data-aos="fade-down" data-aos-duration="1000">
-            <div class="intro-glass">
-                <div class="intro-photo-container">
-                    <img id="intro-photo" src="" alt="Sumeet and Friends">
-                </div>
-                <h1 id="intro-greeting"></h1>
-                <p id="intro-message"></p>
-                <button id="confetti-btn" class="fun-btn">Celebrate! 🎉</button>
-            </div>
-        </section>
+  <!-- Loading -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-inner">
+      <span class="loading-icon">🎂</span>
+      <p class="loading-label">A moment of magic&hellip;</p>
+    </div>
+  </div>
 
-        <!-- Messages Section -->
-        <section class="messages-section">
-            <h2 class="section-title" data-aos="fade-up">Messages from Family & Friends</h2>
-            <!-- Dynamic Grid where JS will inject cards -->
-            <div class="masonry-grid" id="messages-grid">
-                <!-- Cards will go here -->
-            </div>
-        </section>
-        
-        <footer>
-            <p>Made with ❤️ for Sumeet</p>
-        </footer>
-    </main>
+  <!-- Three.js canvas -->
+  <canvas id="bg-canvas"></canvas>
 
-    <!-- Confetti Script -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- AOS Script -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Our Custom Scripts -->
-    <script src="content.js"></script>
-    <script src="app.js"></script>
+  <!-- Shared elements injected by app.js: nav, progress-bar, lightbox -->
+
+  <main class="page-body">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="badge badge-rose">Today is your day ✦</span>
+        </div>
+        <h2 class="hero-sub">Happy Birthday,</h2>
+        <h1 class="hero-name" id="hero-name">Sumeet</h1>
+        <p class="hero-tagline" id="hero-tagline">You are loved beyond words. Explore what everyone has put together, just for you.</p>
+        <div class="hero-actions">
+          <a href="wishes.html" class="btn btn-primary btn-lg">Read Wishes &rarr;</a>
+          <a href="gallery.html" class="btn btn-outline btn-lg">View Memories</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-track"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════ EXPLORE ═══════════════ -->
+    <section class="explore">
+      <div class="container">
+        <div data-reveal>
+          <p class="sec-eyebrow">What&rsquo;s waiting for you</p>
+          <h2 class="sec-heading">Made with love,<br>just for you.</h2>
+          <p class="sec-sub">Every person who loves you has left a little piece of their heart here.</p>
+        </div>
+
+        <div class="explore-grid">
+          <a href="wishes.html" class="exp-card" data-reveal data-reveal-delay="1">
+            <span class="exp-icon">&#x1F48C;</span>
+            <h3 class="exp-title">Birthday Wishes</h3>
+            <p class="exp-desc">Heartfelt messages from everyone who loves you &mdash; each one written just for this day.</p>
+            <span class="exp-arrow">Open wishes <span>&#x2192;</span></span>
+          </a>
+
+          <a href="gallery.html" class="exp-card" data-reveal data-reveal-delay="2">
+            <span class="exp-icon">&#x1F4F8;</span>
+            <h3 class="exp-title">Memories &amp; Gallery</h3>
+            <p class="exp-desc">A collection of photos and moments that tell your story. Every picture holds a smile.</p>
+            <span class="exp-arrow">View gallery <span>&#x2192;</span></span>
+          </a>
+
+          <div class="exp-card" data-reveal data-reveal-delay="3" style="cursor:default;">
+            <span class="exp-icon">&#x1F389;</span>
+            <h3 class="exp-title">Celebrate!</h3>
+            <p class="exp-desc">You make the world around you a better place. Click below to mark this special day.</p>
+            <button class="exp-arrow btn-ghost" id="confetti-inline" style="background:none;border:none;padding:0;font-size:.825rem;color:var(--rose-lt);font-weight:500;cursor:pointer;display:flex;align-items:center;gap:.35rem;">
+              Launch confetti <span>&#x1F38A;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ STATS ═══════════════ -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-row">
+          <div class="stat-cell" data-reveal>
+            <span class="stat-num" id="stat-wishes">0</span>
+            <span class="stat-lbl">Wishes Written</span>
+          </div>
+          <div class="stat-cell" data-reveal data-reveal-delay="1">
+            <span class="stat-num">&infin;</span>
+            <span class="stat-lbl">Love Sent</span>
+          </div>
+          <div class="stat-cell" data-reveal data-reveal-delay="2">
+            <span class="stat-num" id="stat-photos">0</span>
+            <span class="stat-lbl">Memories Shared</span>
+          </div>
+          <div class="stat-cell" data-reveal data-reveal-delay="3">
+            <span class="stat-num">1</span>
+            <span class="stat-lbl">Amazing Person</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+      <p>Made with <span class="footer-heart">&#x2665;</span> for <span id="footer-name">Sumeet</span></p>
+      <div class="footer-links">
+        <a href="wishes.html">Wishes</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Landing-page specific init
+    (function () {
+      // Populate name
+      if (typeof siteData !== 'undefined') {
+        document.getElementById('hero-name').textContent   = siteData.name;
+        document.getElementById('footer-name').textContent = siteData.name;
+        document.title = 'Happy Birthday ' + siteData.name + '!';
+        if (siteData.tagline) document.getElementById('hero-tagline').textContent = siteData.tagline;
+      }
+
+      // Animate stats after they scroll in
+      function animateStat(el, target, ms) {
+        if (!el) return;
+        const start = performance.now();
+        requestAnimationFrame(function tick(now) {
+          var p = Math.min((now - start) / ms, 1);
+          el.textContent = Math.round(p * target);
+          if (p < 1) requestAnimationFrame(tick);
+        });
+      }
+
+      // Trigger on reveal
+      var statDone = false;
+      var strip = document.querySelector('.stats-strip');
+      if (strip) {
+        new IntersectionObserver(function(entries) {
+          if (entries[0].isIntersecting && !statDone) {
+            statDone = true;
+            animateStat(document.getElementById('stat-wishes'),
+              typeof birthdayMessages !== 'undefined' ? birthdayMessages.length : 6, 1400);
+            animateStat(document.getElementById('stat-photos'),
+              typeof galleryPhotos !== 'undefined' ? galleryPhotos.length : 6, 1700);
+          }
+        }, { threshold: 0.3 }).observe(strip);
+      }
+
+      // Inline confetti
+      document.getElementById('confetti-inline')?.addEventListener('click', function() {
+        if (typeof fireConfetti === 'function') fireConfetti();
+      });
+
+      // Explore card mouse-gradient
+      document.querySelectorAll('.exp-card').forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+          var r = card.getBoundingClientRect();
+          card.style.setProperty('--cx', ((e.clientX - r.left) / r.width * 100) + '%');
+          card.style.setProperty('--cy', ((e.clientY - r.top)  / r.height * 100) + '%');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

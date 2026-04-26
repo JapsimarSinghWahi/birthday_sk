@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memories &amp; Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Shared elements injected by app.js -->
+
+  <main class="page-body">
+
+    <!-- ═══════════════ PAGE HERO ═══════════════ -->
+    <div class="page-hero">
+      <p class="sec-eyebrow">A lifetime of moments</p>
+      <h1 class="sec-heading" style="font-size:clamp(2.4rem,6vw,4rem);">Memories &amp; Gallery</h1>
+      <p style="font-size:1rem;color:var(--text-muted);margin-top:.6rem;">Every photo tells a story. Every story is yours.</p>
+    </div>
+
+    <!-- ═══════════════ GALLERY CONTENT ═══════════════ -->
+    <div class="gallery-wrap">
+
+      <!-- Timeline -->
+      <div data-reveal>
+        <p class="sec-eyebrow">Through the years</p>
+        <h2 class="sec-heading" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:.5rem;">A Walk Down Memory Lane</h2>
+        <p class="sec-sub" style="margin-bottom:3rem;">Some chapters that shaped who you are today.</p>
+      </div>
+
+      <div class="tl" id="timeline">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Photo Grid -->
+      <div class="grid-section" data-reveal>
+        <div class="grid-sec-head">
+          <p class="sec-eyebrow">Moments in frames</p>
+          <h2 class="sec-heading" style="font-size:clamp(1.8rem,4vw,2.8rem);">Photo Collection</h2>
+        </div>
+        <div class="photo-grid" id="photo-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+      <p>Made with <span class="footer-heart">&#x2665;</span> for <span class="footer-name-ref">Sumeet</span></p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="wishes.html">Wishes</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+  <script>
+  (function () {
+
+    // Update footer name
+    if (typeof siteData !== 'undefined') {
+      document.title = 'Memories for ' + siteData.name;
+      document.querySelectorAll('.footer-name-ref').forEach(function(el){ el.textContent = siteData.name; });
+    }
+
+    /* ── Timeline ───────────────────────────────── */
+    var tl   = document.getElementById('timeline');
+    var mems = typeof galleryMemories !== 'undefined' ? galleryMemories : [];
+
+    mems.forEach(function(mem, i) {
+      var item = document.createElement('div');
+      item.className = 'tl-item'; item.setAttribute('data-reveal', '');
+
+      var imgHTML = mem.photo
+        ? '<div class="tl-img-wrap" data-lb-src="' + escH(mem.photo) + '" data-lb-cap="' + escH(mem.title) + '">' +
+          '<img src="' + escH(mem.photo) + '" alt="' + escH(mem.title) + '" loading="lazy"></div>'
+        : '<div class="tl-no-photo">&#x1F5BC;</div>';
+
+      item.innerHTML =
+        '<div class="tl-stem">' +
+          '<div class="tl-dot"></div>' +
+          '<span class="tl-year-pill">' + escH(mem.year || '') + '</span>' +
+        '</div>' +
+        '<div class="tl-body">' +
+          '<div class="tl-text-col">' +
+            '<span class="tl-tag">' + escH(mem.year || '') + '</span>' +
+            '<h3 class="tl-title">' + escH(mem.title) + '</h3>' +
+            '<p class="tl-desc">' + escH(mem.text) + '</p>' +
+          '</div>' +
+          '<div class="tl-img-col">' + imgHTML + '</div>' +
+        '</div>';
+
+      tl.appendChild(item);
+    });
+
+    /* ── Photo grid ─────────────────────────────── */
+    var grid   = document.getElementById('photo-grid');
+    var photos = typeof galleryPhotos !== 'undefined' ? galleryPhotos : [];
+
+    photos.forEach(function(ph) {
+      var item = document.createElement('div');
+      item.className = 'pg-item';
+      item.dataset.lbSrc = ph.src;
+      item.dataset.lbCap = ph.caption || '';
+      item.innerHTML =
+        '<img src="' + escH(ph.src) + '" alt="' + escH(ph.caption||'') + '" loading="lazy">' +
+        (ph.caption ? '<p class="pg-caption">' + escH(ph.caption) + '</p>' : '');
+      grid.appendChild(item);
+    });
+
+    /* ── Lightbox trigger ───────────────────────── */
+    function allLbItems() {
+      return Array.from(document.querySelectorAll('[data-lb-src]')).map(function(el){
+        return { src: el.dataset.lbSrc, cap: el.dataset.lbCap || '' };
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('[data-lb-src]');
+      if (!el) return;
+      var items = allLbItems();
+      var idx   = items.findIndex(function(it){ return it.src === el.dataset.lbSrc; });
+      if (typeof openLightbox === 'function') openLightbox(items, idx);
+    });
+
+    /* ── Scroll reveal for timeline items ─────── */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.tl-item').forEach(function(el){ io.observe(el); });
+
+    function escH(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  })();
+  </script>
+</body>
+</html>

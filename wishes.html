@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Shared elements injected by app.js -->
+
+  <main class="page-body">
+
+    <!-- ═══════════════ PAGE HERO ═══════════════ -->
+    <div class="page-hero">
+      <p class="sec-eyebrow">From everyone who loves you</p>
+      <h1 class="sec-heading" style="font-size:clamp(2.4rem,6vw,4rem);">Birthday Wishes</h1>
+      <p style="font-size:1rem;color:var(--text-muted);margin-top:.6rem;" id="wish-subtitle">Every word written just for you.</p>
+
+      <!-- Filter tabs -->
+      <div class="filter-bar" id="filter-bar">
+        <button class="ftab active" data-filter="all">All <span class="ftab-count" id="count-all">0</span></button>
+        <button class="ftab" data-filter="family">Family <span class="ftab-count" id="count-family">0</span></button>
+        <button class="ftab" data-filter="friend">Friends <span class="ftab-count" id="count-friend">0</span></button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WISHES GRID ═══════════════ -->
+    <div class="wishes-wrap">
+      <div class="wishes-grid" id="wishes-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="site-footer">
+      <p>Made with <span class="footer-heart">&#x2665;</span> for <span class="footer-name-ref">Sumeet</span></p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+  <script>
+  (function () {
+    /* ── Populate wishes ────────────────────────── */
+    var grid  = document.getElementById('wishes-grid');
+    var msgs  = typeof birthdayMessages !== 'undefined' ? birthdayMessages : [];
+
+    // Update title
+    if (typeof siteData !== 'undefined') {
+      document.title = 'Wishes for ' + siteData.name + '!';
+      document.querySelectorAll('.footer-name-ref').forEach(function(el){ el.textContent = siteData.name; });
+    }
+
+    // Count tabs
+    var counts = { all: msgs.length, family: 0, friend: 0 };
+    msgs.forEach(function(m) {
+      (m.tags || []).forEach(function(t) { if (counts[t] !== undefined) counts[t]++; });
+    });
+    document.getElementById('count-all').textContent    = counts.all;
+    document.getElementById('count-family').textContent = counts.family;
+    document.getElementById('count-friend').textContent = counts.friend;
+
+    // Build cards
+    msgs.forEach(function(msg, i) {
+      var card = document.createElement('div');
+      card.className = 'wish-card';
+      card.dataset.tags = (msg.tags || []).join(' ');
+      card.style.transitionDelay = (i % 3 * 0.1) + 's';
+
+      var initial = (msg.name || '?').charAt(0).toUpperCase();
+      var photoSection = msg.photo
+        ? '<div class="wc-photo-wrap" data-lb-src="' + escH(msg.photo) + '" data-lb-cap="' + escH(msg.name) + '">' +
+          '<img src="' + escH(msg.photo) + '" alt="' + escH(msg.name) + '" class="wc-photo" loading="lazy">' +
+          '<div class="wc-photo-shade"></div></div>'
+        : '';
+
+      var avatarInner = msg.photo
+        ? '<img src="' + escH(msg.photo) + '" alt="' + escH(msg.name) + '">'
+        : initial;
+
+      var relHTML = msg.relation
+        ? '<p class="wc-rel">' + escH(msg.relation) + '</p>' : '';
+
+      var likedKey  = 'liked_' + i;
+      var likeCount = parseInt(localStorage.getItem('lc_' + i) || '0', 10);
+      var isLiked   = localStorage.getItem(likedKey) === '1';
+
+      card.innerHTML =
+        photoSection +
+        '<div class="wc-body">' +
+          '<span class="wc-quote">&ldquo;</span>' +
+          '<p class="wc-text">' + escH(msg.message) + '</p>' +
+          '<div class="wc-footer">' +
+            '<div class="wc-author">' +
+              '<div class="avatar avatar-sm">' + avatarInner + '</div>' +
+              '<div><p class="wc-name">' + escH(msg.name) + '</p>' + relHTML + '</div>' +
+            '</div>' +
+            '<button class="heart-btn' + (isLiked ? ' liked' : '') + '" data-idx="' + i + '">' +
+              '<span class="hi">' + (isLiked ? '&#x2665;' : '&#x2661;') + '</span>' +
+              '<span class="hc">' + likeCount + '</span>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+
+      grid.appendChild(card);
+    });
+
+    // Empty state placeholder
+    var emptyEl = document.createElement('div');
+    emptyEl.className = 'empty-state'; emptyEl.id = 'empty-state'; emptyEl.hidden = true;
+    emptyEl.innerHTML = '<span class="empty-state-icon">&#x1F4ED;</span><p>No wishes in this category yet.</p>';
+    grid.appendChild(emptyEl);
+
+    /* ── Scroll reveal ──────────────────────────── */
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.wish-card').forEach(function(c) { io.observe(c); });
+
+    /* ── Filter ─────────────────────────────────── */
+    document.getElementById('filter-bar').addEventListener('click', function(e) {
+      var btn = e.target.closest('.ftab');
+      if (!btn) return;
+      document.querySelectorAll('.ftab').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+
+      var cards = document.querySelectorAll('.wish-card');
+      var visible = 0;
+      cards.forEach(function(c) {
+        var show = filter === 'all' || (c.dataset.tags || '').split(' ').includes(filter);
+        c.hidden = !show;
+        if (show) visible++;
+      });
+      document.getElementById('empty-state').hidden = visible > 0;
+    });
+
+    /* ── Heart reactions ────────────────────────── */
+    grid.addEventListener('click', function(e) {
+      var btn = e.target.closest('.heart-btn');
+      if (!btn) return;
+      var idx  = btn.dataset.idx;
+      var key  = 'liked_' + idx;
+      var lcKey = 'lc_' + idx;
+      var liked = localStorage.getItem(key) === '1';
+      var count = parseInt(localStorage.getItem(lcKey) || '0', 10);
+
+      if (liked) {
+        localStorage.removeItem(key);
+        count = Math.max(0, count - 1);
+        btn.classList.remove('liked');
+        btn.querySelector('.hi').innerHTML = '&#x2661;';
+      } else {
+        localStorage.setItem(key, '1');
+        count++;
+        btn.classList.add('liked');
+        btn.querySelector('.hi').innerHTML = '&#x2665;';
+      }
+      localStorage.setItem(lcKey, count);
+      btn.querySelector('.hc').textContent = count;
+    });
+
+    /* ── Photo lightbox trigger ─────────────────── */
+    grid.addEventListener('click', function(e) {
+      var wrap = e.target.closest('[data-lb-src]');
+      if (!wrap) return;
+      var srcs = Array.from(document.querySelectorAll('[data-lb-src]')).map(function(w){ return { src: w.dataset.lbSrc, cap: w.dataset.lbCap }; });
+      var idx  = srcs.findIndex(function(s){ return s.src === wrap.dataset.lbSrc; });
+      if (typeof openLightbox === 'function') openLightbox(srcs, idx);
+    });
+
+    /* ── Helpers ────────────────────────────────── */
+    function escH(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  })();
+  </script>
+</body>
+</html>

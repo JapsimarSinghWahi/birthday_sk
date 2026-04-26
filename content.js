@@ -6,7 +6,7 @@ const specialIntro = {
   greeting: "Happy Birthday, Sumeet! 🎉",
   message: "We love you so much! Here's a little something from all of us to celebrate your special day. Scroll down to see the love!",
   // You can put a photo of you and Sumeet here!
-  photo: "https://images.unsplash.com/photo-1530103862676-de3c9de59f9e?auto=format&fit=crop&w=800&q=80" 
+  photo: "assets/photos/sumeet.jpg"
 };
 
 // Add friends' messages here!
@@ -15,11 +15,11 @@ const specialIntro = {
 const birthdayMessages = [
   {
     name: "Japsimar",
-    photo: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80",
+    photo: "assets/photos/with_simar.jpg",
     message: "Happy Birthday Sumeet! Wishing you all the happiness in the world today and always. ❤️"
   },
   {
-    name: "Alex",
+    name: "Angad",
     photo: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80",
     message: "Hope you have an absolutely amazing day full of cake and fun!"
   },

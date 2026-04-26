@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sumeet! 🎂</title>
+    <!-- Playful Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Our Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background shapes -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+
+    <main class="container">
+        <!-- Intro Section -->
+        <section class="intro" data-aos="fade-down" data-aos-duration="1000">
+            <div class="intro-glass">
+                <div class="intro-photo-container">
+                    <img id="intro-photo" src="" alt="Sumeet and Friends">
+                </div>
+                <h1 id="intro-greeting"></h1>
+                <p id="intro-message"></p>
+                <button id="confetti-btn" class="fun-btn">Celebrate! 🎉</button>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section class="messages-section">
+            <h2 class="section-title" data-aos="fade-up">Messages from Family & Friends</h2>
+            <!-- Dynamic Grid where JS will inject cards -->
+            <div class="masonry-grid" id="messages-grid">
+                <!-- Cards will go here -->
+            </div>
+        </section>
+        
+        <footer>
+            <p>Made with ❤️ for Sumeet</p>
+        </footer>
+    </main>
+
+    <!-- Confetti Script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Our Custom Scripts -->
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -233,7 +233,7 @@ const galleryMemories = [
     year: "2024",
     title: "The yes moment ",
     text: "This is the moment when you said yes! Well, technically i asked multiple times before but the official one. (And if the guy is sitting down on one knee, it means he is proposing, he doesn't have to ask the exact words.) Thank god for you...",
-    photo: "assets/photos/the_yes_moment.jpg",
+    photo: "assets/photos/the_yes_moment.jpeg",
   },
   {
     year: "2025",

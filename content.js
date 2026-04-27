@@ -220,20 +220,20 @@ const galleryMemories = [
   {
     year: "2024",
     title: "First picture we sent home (not the best quality though) ",
-    text: "This was the first picture we sent home after yoy took forever to find the best one.",
-    photo: "assets/photos/video_calls.jpg",
+    text: "This was the first picture we sent home after you took forever to find the best one.",
+    photo: "assets/photos/send_home.jpg",
   },
   {
     year: "2024",
     title: "with Peppa ",
     text: "With peppa from 'Peppa and Reppa'",
-    photo: "assets/photos/with_peppa.jpeg",
+    photo: "assets/photos/with_peppa.jpg",
   },
   {
     year: "2024",
     title: "The yes moment ",
     text: "This is the moment when you said yes! Well, technically i asked multiple times before but the official one. (And if the guy is sitting down on one knee, it means he is proposing, he doesn't have to ask the exact words.) Thank god for you...",
-    photo: "assets/photos/with_peppa.jpeg",
+    photo: "assets/photos/the_yes_moment.jpg",
   },
   {
     year: "2025",

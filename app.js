@@ -28,6 +28,7 @@
           navLink('gallery.html', 'Gallery') +
         '</div>' +
         '<div class="nav-end">' +
+          '<button class="nav-music-btn" id="nav-music" title="Play happy birthday tune">&#x1F3B5;</button>' +
           '<button class="nav-pill" id="nav-celebrate">&#x1F389;&nbsp; Celebrate</button>' +
           '<button class="nav-mob-toggle" id="mob-toggle" aria-label="Menu">&#x2630;</button>' +
         '</div>' +
@@ -247,7 +248,101 @@
   }
 
   /* ──────────────────────────────────────────────────────────────
-     8. PAGE LINK TRANSITIONS (smooth fade out before navigate)
+     8. HAPPY BIRTHDAY MUSIC  (Web Audio API — no file needed)
+  ────────────────────────────────────────────────────────────── */
+  var audioCtx    = null;
+  var masterGain  = null;
+  var musicOn     = false;
+  var musicLoopId = null;
+  var musicBtn    = document.getElementById('nav-music');
+
+  // Happy Birthday melody: [frequency_hz, beats]
+  var TEMPO   = 76;
+  var BEAT_MS = 60000 / TEMPO;
+  var HB = [
+    [261.63,.75],[261.63,.25],[293.66,1],[261.63,1],[349.23,1],[329.63,2.25],
+    [261.63,.75],[261.63,.25],[293.66,1],[261.63,1],[392.00,1],[349.23,2.25],
+    [261.63,.75],[261.63,.25],[523.25,1],[440.00,1],[349.23,1],[329.63,1],[293.66,2.25],
+    [466.16,.75],[466.16,.25],[440.00,1],[349.23,1],[392.00,1],[349.23,3.5],
+  ];
+
+  function initAudio() {
+    if (audioCtx) return;
+    audioCtx   = new (window.AudioContext || window['webkitAudioContext'])();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(audioCtx.destination);
+  }
+
+  function playNote(freq, durationSec, startTime) {
+    var g = audioCtx.createGain();
+    g.gain.setValueAtTime(0, startTime);
+    g.gain.linearRampToValueAtTime(0.07, startTime + 0.025);
+    g.gain.exponentialRampToValueAtTime(0.035, startTime + durationSec * 0.55);
+    g.gain.exponentialRampToValueAtTime(0.0001, startTime + durationSec - 0.04);
+    // Connect to master (not directly to destination)
+    g.connect(masterGain);
+
+    var o1 = audioCtx.createOscillator();
+    o1.type = 'sine'; o1.frequency.value = freq;
+    o1.connect(g); o1.start(startTime); o1.stop(startTime + durationSec);
+
+    var g2 = audioCtx.createGain(); g2.gain.value = 0.25;
+    var o2 = audioCtx.createOscillator();
+    o2.type = 'sine'; o2.frequency.value = freq * 2;
+    o2.connect(g2); g2.connect(g);
+    o2.start(startTime); o2.stop(startTime + durationSec);
+  }
+
+  function scheduleMelody() {
+    if (!musicOn) return;
+    var t = audioCtx.currentTime + 0.1;
+    var len = 0;
+    HB.forEach(function (n) {
+      var dur = n[1] * BEAT_MS / 1000;
+      playNote(n[0], dur, t);
+      t += dur; len += n[1];
+    });
+    musicLoopId = setTimeout(scheduleMelody, (len + 2) * BEAT_MS);
+  }
+
+  function freshMasterGain() {
+    // Disconnect old gain so any lingering scheduled oscillators go silent
+    if (masterGain) { masterGain.disconnect(); }
+    masterGain = audioCtx.createGain();
+    masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+    masterGain.connect(audioCtx.destination);
+  }
+
+  function toggleMusic() {
+    initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    musicOn = !musicOn;
+    if (musicOn) {
+      // New gain node — orphans ALL previously scheduled oscillators
+      freshMasterGain();
+      masterGain.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.3);
+      scheduleMelody();
+      musicBtn.classList.add('on');
+      musicBtn.title = 'Pause music';
+    } else {
+      clearTimeout(musicLoopId);
+      // Fade out then disconnect
+      masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+      masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.25);
+      var old = masterGain;
+      setTimeout(function () { old.disconnect(); }, 400);
+      masterGain = null;
+      musicBtn.classList.remove('on');
+      musicBtn.title = 'Play happy birthday tune';
+    }
+  }
+
+  if (musicBtn) musicBtn.addEventListener('click', toggleMusic);
+
+  /* ──────────────────────────────────────────────────────────────
+     9. PAGE LINK TRANSITIONS (smooth fade out before navigate)
   ────────────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a[href]');

@@ -101,7 +101,7 @@ const birthdayMessages = [
     name: "Sanhita",
     relation: "Friend",
     tags: ["friend"],
-    photo: "assets/photos/sanhita_and_sumeet.jpeg",
+    photo: "assets/photos/sanhita_and_sumi.jpeg",
     message: "Happy happy birthday, Fizzu ❤️❤️!!! So grateful to have you by my side—the journey from “Heron to Teron 😎” has been surreal. Thanks for all the love, care, and all the crazyyy, amazing memories!! Cheers to another year of celebrating you 🫶🏻—and yes, let’s continue with one more round of shifting 😂😂 Lots and lots of love, babe ❤️ See you in the living room in 5 😌"
   },
   {
@@ -209,19 +209,19 @@ const galleryMemories = [
     year: "2024",
     title: "First Trip Together! ❤️",
     text: "Where I was completely blown away by the most beautiful girl I ever seen. I thought to myself, the deal is done and you have to somehow make her fall in love with you. (Btw I did lol)",
-    photo: "assets/photos/first_trip.jpg",
+    photo: "assets/photos/first_trip.jpeg",
   },
   {
     year: "2024",
     title: "A million video calls ",
     text: "I loved (and hated as you were not with me) our long video call sessions. But those long calls with you made our bond stronger and made us closer. Btw i tricked you into the first one. Lol",
-    photo: "assets/photos/video_calls.jpg",
+    photo: "assets/photos/video_calls.jpeg",
   },
   {
     year: "2024",
     title: "First picture we sent home (not the best quality though) ",
-    text: "This was the first picture we sent home after yoy took forever to find the best one.",
-    photo: "assets/photos/send_home.jpg",
+    text: "This was the first picture we sent home after you took forever to find the best one.",
+    photo: "assets/photos/send_home.jpeg",
   },
   {
     year: "2024",
@@ -233,13 +233,7 @@ const galleryMemories = [
     year: "2024",
     title: "The yes moment ",
     text: "This is the moment when you said yes! Well, technically i asked multiple times before but the official one. (And if the guy is sitting down on one knee, it means he is proposing, he doesn't have to ask the exact words.) Thank god for you...",
-    photo: "assets/photos/the_yes_moment.JPG",
-  },
-  {
-    year: "2025",
-    title: "Sleeping beauty",
-    text: "You can sleep anywhere. I'm convinced.",
-    photo: "assets/photos/sleeping_beauty.jpg",
+    photo: "assets/photos/the_yes_moment.jpeg",
   },
   {
     year: "2025",

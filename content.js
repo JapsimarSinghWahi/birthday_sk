@@ -42,11 +42,11 @@ const birthdayMessages = [
     message: "Hope you have an absolutely amazing day full of cake, laughter, and everything you love. You deserve nothing but the best \u2014 always. \ud83c\udf82",
   },
   {
-    name: "Sarah & Mike",
+    name: "Sehaj & Tanya",
     relation: "Family",
     tags: ["family"],
-    photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    message: "Cheers to another year of wonderful memories! You make every room brighter just by being in it. Wishing you a birthday as magical as you are!",
+    photo: "assets/photos/sehaj_tanya.jpeg",
+    message: "Happy Birthday! 🎉 Here’s to a year where the Cali sun finally finds you ☀️, your days feel warm and easy, and there’s always a perfect matcha in hand 🍵✨. May everything you’re working toward fall into place especially landing an amazing job (with the same kinda manager lol). Can’t wait to see you soon on our next trip and make more fun memories together! 💛",
   },
   {
     name: "David",
@@ -88,10 +88,10 @@ const birthdayMessages = [
 */
 const galleryMemories = [
   {
-    year: "2021",
-    title: "Adventures Begin",
-    text: "Some of the best memories are the ones we made together, laughing too loud and staying up too late. Here is to always finding the fun in everything.",
-    photo: "https://images.unsplash.com/photo-1530103862676-de3c9de59f9e?auto=format&fit=crop&w=1000&q=80",
+    year: "1999",
+    title: "You were born into and 7 years later you were this beautiful child",
+    text: "With the siblings - Angad please fill",
+    photo: "assets/photos/siblings.jpg",
   },
   {
     year: "2022",
@@ -120,11 +120,11 @@ const galleryMemories = [
     caption : string  — shown on hover (optional)
 */
 const galleryPhotos = [
-  { src: "https://images.unsplash.com/photo-1529543544282-ea669407fca3?auto=format&fit=crop&w=600&q=80", caption: "Always smiling" },
-  { src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80", caption: "Golden moments" },
-  { src: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80", caption: "Best of friends" },
-  { src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80", caption: "Celebrations" },
-  { src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80", caption: "A beautiful soul" },
+  { src: "assets/photos/siblings.jpg", caption: "With the siblings." },
+  { src: "assets/photos/sumeet_mom_nani_baby.jpg", caption: "Mom and mom's mom" },
+  { src: "assets/photos/sumeet.jpg", caption: "Bachelorette Party" },
+  { src: "assets/photos/with_simar.JPG", caption: "Ring ceremony time" },
+  { src: "assets/photos/sehaj_tanya.jpeg", caption: "A beautiful soul" },
   { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80", caption: "Good times" },
   { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80", caption: "Party vibes" },
   { src: "https://images.unsplash.com/photo-1530103862676-de3c9de59f9e?auto=format&fit=crop&w=600&q=80", caption: "Another year, another adventure" },

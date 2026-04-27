@@ -81,10 +81,21 @@
       var item = document.createElement('div');
       item.className = 'tl-item'; item.setAttribute('data-reveal', '');
 
-      var imgHTML = mem.photo
-        ? '<div class="tl-img-wrap" data-lb-src="' + escH(mem.photo) + '" data-lb-cap="' + escH(mem.title) + '">' +
-          '<img src="' + escH(mem.photo) + '" alt="' + escH(mem.title) + '" loading="lazy"></div>'
-        : '<div class="tl-no-photo">&#x1F5BC;</div>';
+      var imgHTML;
+      if (mem.video) {
+        imgHTML =
+          '<div class="tl-video-wrap" data-video>' +
+            '<video class="tl-video" src="' + escH(mem.video) + '" preload="metadata" playsinline loop></video>' +
+            '<div class="tl-play-overlay"><div class="tl-play-icon">&#x25B6;</div></div>' +
+          '</div>';
+      } else if (mem.photo) {
+        imgHTML =
+          '<div class="tl-img-wrap" data-lb-src="' + escH(mem.photo) + '" data-lb-cap="' + escH(mem.title || '') + '">' +
+            '<img src="' + escH(mem.photo) + '" alt="' + escH(mem.title || '') + '" loading="lazy">' +
+          '</div>';
+      } else {
+        imgHTML = '<div class="tl-no-photo">&#x1F5BC;</div>';
+      }
 
       item.innerHTML =
         '<div class="tl-stem">' +
@@ -116,6 +127,22 @@
         '<img src="' + escH(ph.src) + '" alt="' + escH(ph.caption||'') + '" loading="lazy">' +
         (ph.caption ? '<p class="pg-caption">' + escH(ph.caption) + '</p>' : '');
       grid.appendChild(item);
+    });
+
+    /* ── Video play / pause ─────────────────────── */
+    document.getElementById('timeline').addEventListener('click', function(e) {
+      var wrap = e.target.closest('[data-video]');
+      if (!wrap) return;
+      var video = wrap.querySelector('.tl-video');
+      if (video.paused) {
+        video.play();
+        wrap.classList.add('playing');
+      } else {
+        video.pause();
+        wrap.classList.remove('playing');
+      }
+      // Show overlay again when video ends
+      video.onended = function() { wrap.classList.remove('playing'); };
     });
 
     /* ── Lightbox trigger ───────────────────────── */

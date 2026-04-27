@@ -32,7 +32,7 @@ const birthdayMessages = [
     relation: "Husband",
     tags: ["family"],
     photo: "assets/photos/with_simar.jpg",
-    message: "Happy Birthday Sumeet! Wishing you all the happiness in the world today and always. You mean the world to me and I am so grateful you are in my life. Here is to you! \u2764\ufe0f",
+    message: "Happy Birthday Gobi! Wishing you all the happiness in the world today and always. I wish I was also in Canada to celebrate it with you. (Sorry - for not being there). You mean the world to me and I am so grateful you are in my life. Here is to you! \u2764\ufe0f",
   },
   {
     name: "Sehaj & Tanya",
@@ -276,4 +276,7 @@ const galleryPhotos = [
   { src: "assets/photos/IMG_9587.jpg", caption: "sunset time" },
   { src: "assets/photos/IMG_9689.jpg", caption: "Hoodie up" },
   { src: "assets/photos/IMG_9751.jpg", caption: "stylish" },
+  { src: "assets/photos/photo1.jpg", caption: "home time" },
+  { src: "assets/photos/photo2.jpg", caption: "event ready" },
+  { src: "assets/photos/IMG_7842.jpg", caption: "Family time" },
 ];

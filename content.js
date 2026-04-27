@@ -89,7 +89,28 @@ const birthdayMessages = [
     tags: ["family"],
     photo: "assets/photos/nani_and_sumeet.jpeg",
     message: "Happy Birthday, my dear child 🎉💖 You are truly the best grandchild of all, and you hold a very special place in my heart 🥰✨ May your life always be filled with happiness, good health, and endless blessings 🌸🙏",
-  }, 
+  },
+  {
+    name: "Ronisha",
+    relation: "Friend",
+    tags: ["friend"],
+    photo: "assets/photos/ronisha_and_sumeet.jpeg",
+    message: "HAPPIEST BIRTHDAY SUMEET!!🩷 We had the privilege of celebrating your birthday this year with you and Amen for that :) Thanks for being the emotionally available friend and the world would be a better place if everyone has a friend like you to give them the right advice at the right time! Loveya! See you in an hour or two with the prettiest cake for the prettiest boss lady!  (Insert: Bitches ain't shit and they ain't saying nothing; A hundred mothafuckas can't tell me nothing; I beez in the trap, be-beez in the trap; I beez in the trap, be-beez in the trap)"
+  },
+  {
+    name: "Sanhita",
+    relation: "Friend",
+    tags: ["friend"],
+    photo: "assets/photos/sanhita_and_sumeet.jpeg",
+    message: "Happy happy birthday, Fizzu ❤️❤️!!! So grateful to have you by my side—the journey from “Heron to Teron 😎” has been surreal. Thanks for all the love, care, and all the crazyyy, amazing memories!! Cheers to another year of celebrating you 🫶🏻—and yes, let’s continue with one more round of shifting 😂😂 Lots and lots of love, babe ❤️ See you in the living room in 5 😌"
+  },
+  {
+    name: "Roshita",
+    relation: "Friend",
+    tags: ["friend"],
+    photo: "assets/photos/roshita_and_sumeet.jpeg",
+    message: "Happy Birthday to the one and only queen who made university actually worth it! 🎉 Honestly, I hit the jackpot when I met you . Out of everyone, you're the one who stuck, and thank god for that. You've been there through my toughest moments, always ready with the perfect advice (how do you always know exactly what to say??) and somehow making me laugh even when everything felt impossible. You're funny, you're fabulous, you have taste that the rest of us can only aspire to, and your friendship is one of the best things in my life. Here's to another year of you being unapologetically boujee and absolutely iconic. I hope today spoils you the way you deserve. 🥂✨ Love you endlessly! 🤍"
+  },
 ];
 
 /* ── Gallery: Timeline memories ──────────────────────────────── */
@@ -101,7 +122,7 @@ const birthdayMessages = [
     photo : string  — path or URL (optional)
 */
 const galleryMemories = [
-   {
+  {
     year: "1995",
     title: "And Then There Was You.",
     text: "April 28. The day you came into this world and quietly changed ours forever. None of us knew it yet, but life had just become a lot more beautiful",
@@ -183,6 +204,36 @@ const galleryMemories = [
     title: "And Then Came Simar ❤️",
     text: "Just when you had built everything for yourself, life had something new waiting. In 2024, you met Simar, and a beautiful new chapter of love quietly began.",
     photo: "assets/photos/simar_and_sumeet.jpeg",
+  },
+  {
+    year: "2024",
+    title: "First Trip Together! ❤️",
+    text: "Where I was completely blown away by the most beautiful girl I ever seen. I thought to myself, the deal is done and you have to somehow make her fall in love with you. (Btw I did lol)",
+    photo: "assets/photos/first_trip.jpg",
+  },
+  {
+    year: "2024",
+    title: "A million video calls ",
+    text: "I loved (and hated as you were not with me) our long video call sessions. But those long calls with you made our bond stronger and made us closer. Btw i tricked you into the first one. Lol",
+    photo: "assets/photos/video_calls.jpg",
+  },
+  {
+    year: "2024",
+    title: "First picture we sent home (not the best quality though) ",
+    text: "This was the first picture we sent home after yoy took forever to find the best one.",
+    photo: "assets/photos/video_calls.jpg",
+  },
+  {
+    year: "2024",
+    title: "with Peppa ",
+    text: "With peppa from 'Peppa and Reppa'",
+    photo: "assets/photos/with_peppa.jpeg",
+  },
+  {
+    year: "2024",
+    title: "The yes moment ",
+    text: "This is the moment when you said yes! Well, technically i asked multiple times before but the official one. (And if the guy is sitting down on one knee, it means he is proposing, he doesn't have to ask the exact words.) Thank god for you...",
+    photo: "assets/photos/with_peppa.jpeg",
   },
   {
     year: "2025",

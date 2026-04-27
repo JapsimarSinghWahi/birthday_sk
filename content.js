@@ -215,7 +215,7 @@ const galleryMemories = [
     year: "2024",
     title: "A million video calls ",
     text: "I loved (and hated as you were not with me) our long video call sessions. But those long calls with you made our bond stronger and made us closer. Btw i tricked you into the first one. Lol",
-    photo: "assets/photos/video_calls.jpg",
+    photo: "assets/photos/video_calls.jpeg",
   },
   {
     year: "2024",

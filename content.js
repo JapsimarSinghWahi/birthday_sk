@@ -240,7 +240,7 @@ const galleryMemories = [
     year: "2024",
     title: "Sleeping beauty",
     text: "The way you can sleep anywhere specially planes is amazing",
-    photo: "assets/photos/sleeping_beauty.jpg",
+    photo: "assets/photos/sleeping_beauty.png",
   },
   {
     year: "2024",

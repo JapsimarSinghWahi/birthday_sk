@@ -111,6 +111,13 @@ const birthdayMessages = [
     photo: "assets/photos/roshita_and_sumeet.jpeg",
     message: "Happy Birthday to the one and only queen who made university actually worth it! 🎉 Honestly, I hit the jackpot when I met you . Out of everyone, you're the one who stuck, and thank god for that. You've been there through my toughest moments, always ready with the perfect advice (how do you always know exactly what to say??) and somehow making me laugh even when everything felt impossible. You're funny, you're fabulous, you have taste that the rest of us can only aspire to, and your friendship is one of the best things in my life. Here's to another year of you being unapologetically boujee and absolutely iconic. I hope today spoils you the way you deserve. 🥂✨ Love you endlessly! 🤍"
   },
+  {
+    name: "Ayushi",
+    relation: "Friend",
+    tags: ["friend"],
+    photo: "assets/photos/ayushi1.jpeg",
+    message: "Happy birthday to the one who’s been my constant for more than a decade now ♥️  From all our stupid jokes and late night gossip sessions to the kind of memories only we could ever make, you’re a part of my heart I carry everywhere.  Even miles apart, nothing really changes. You’re still my person.  I miss you more than I say, and I celebrate you always.  Here’s to everything we’ve lived and everything still waiting for us!!! HBD Sumu, you deserve all the happiness this world has to offer fr. Missing you while I’m writing this. Can’t wait to see you! 😘"
+  },
 ];
 
 /* ── Gallery: Timeline memories ──────────────────────────────── */
@@ -231,6 +238,12 @@ const galleryMemories = [
   },
   {
     year: "2024",
+    title: "Sleeping beauty",
+    text: "The way you can sleep anywhere specially planes is amazing",
+    photo: "assets/photos/sleeping_beauty.jpg",
+  },
+  {
+    year: "2024",
     title: "The yes moment ",
     text: "This is the moment when you said yes! Well, technically i asked multiple times before but the official one. (And if the guy is sitting down on one knee, it means he is proposing, he doesn't have to ask the exact words.) Thank god for you...",
     photo: "assets/photos/the_yes_moment.jpeg",
@@ -279,4 +292,6 @@ const galleryPhotos = [
   { src: "assets/photos/photo1.jpg", caption: "home time" },
   { src: "assets/photos/photo2.jpg", caption: "event ready" },
   { src: "assets/photos/IMG_7842.jpg", caption: "Family time" },
+  { src: "assets/photos/ayushi2.jpg", caption: "Friends forever" },
+  { src: "assets/photos/ayushi3.jpg", caption: "Friends forever" },
 ];

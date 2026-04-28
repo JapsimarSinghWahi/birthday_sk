@@ -28,20 +28,6 @@ const siteData = {
 */
 const birthdayMessages = [
   {
-    name: "Japsimar",
-    relation: "Husband",
-    tags: ["family"],
-    photo: "assets/photos/with_simar.jpg",
-    message: "Happy Birthday Gobi! Wishing you all the happiness in the world today and always. I wish I was also in Canada to celebrate it with you. (Sorry - for not being there). You mean the world to me and I am so grateful you are in my life. Here is to you! \u2764\ufe0f",
-  },
-  {
-    name: "Sehaj & Tanya",
-    relation: "Family",
-    tags: ["family"],
-    photo: "assets/photos/sehaj_tanya.jpeg",
-    message: "Happy Birthday! 🎉 Here’s to a year where the Cali sun finally finds you ☀️, your days feel warm and easy, and there’s always a perfect matcha in hand 🍵✨. May everything you’re working toward fall into place especially landing an amazing job (with the same kinda manager lol). Can’t wait to see you soon on our next trip and make more fun memories together! 💛",
-  },
-  {
     name: "Mom",
     relation: "Family",
     tags: ["family"],
@@ -54,6 +40,13 @@ const birthdayMessages = [
     tags: ["family"],
     photo: "assets/photos/dad_and_sumeet.jpeg",
     message: "Happy Birthday, my dear daughter 🎉💖 Watching you grow into the person you are today fills me with so much pride. You’ve brought endless joy into our lives, and I couldn’t be happier to call you my daughter 🌟 Always remember how deeply you are loved, today and every day ❤️",
+  },
+  {
+    name: "Nani ma",
+    relation: "Nani",
+    tags: ["family"],
+    photo: "assets/photos/nani_and_sumeet.jpeg",
+    message: "Happy Birthday, my dear child 🎉💖 You are truly the best grandchild of all, and you hold a very special place in my heart 🥰✨ May your life always be filled with happiness, good health, and endless blessings 🌸🙏",
   },
   {
     name: "Meetu",
@@ -77,18 +70,25 @@ const birthdayMessages = [
     message: "Happy Birthday to my amazing sister 🎉💖 You’ve always been my support system and my guide, someone I can count on no matter what 🤍✨ I’m truly lucky to have you in my life. Wishing you endless happiness, love, and all the success you deserve 🎂🌟",
   },
   {
-    name: "Nani ma",
-    relation: "Nani",
-    tags: ["family"],
-    photo: "assets/photos/nani_and_sumeet.jpeg",
-    message: "Happy Birthday, my dear child 🎉💖 You are truly the best grandchild of all, and you hold a very special place in my heart 🥰✨ May your life always be filled with happiness, good health, and endless blessings 🌸🙏",
-  },
-  {
     name: "sasumom and sasudad",
     relation: "sasumom and sasudad",
     tags: ["family"],
     photo: "assets/photos/IMG_9382.jpg",
     message: "Happy Birthday to our lovely daughter in law you are like a daughter to me.Thank you for bringing so much ❤️❤️warmth into our family.With lots of love and best wishes from both of us",
+  },
+  {
+    name: "Japsimar",
+    relation: "Husband",
+    tags: ["family"],
+    photo: "assets/photos/with_simar.jpg",
+    message: "Happy Birthday Gobi! Wishing you all the happiness in the world today and always. I wish I was also in Canada to celebrate it with you. (Sorry - for not being there). You mean the world to me and I am so grateful you are in my life. Here is to the most beautiful wife ever! \u2764\ufe0f",
+  },
+  {
+    name: "Sehaj & Tanya",
+    relation: "Family",
+    tags: ["family"],
+    photo: "assets/photos/sehaj_tanya.jpeg",
+    message: "Happy Birthday! 🎉 Here’s to a year where the Cali sun finally finds you ☀️, your days feel warm and easy, and there’s always a perfect matcha in hand 🍵✨. May everything you’re working toward fall into place especially landing an amazing job (with the same kinda manager lol). Can’t wait to see you soon on our next trip and make more fun memories together! 💛",
   },
   {
     name: "Ronisha",
@@ -115,7 +115,7 @@ const birthdayMessages = [
     name: "Ayushi",
     relation: "Friend",
     tags: ["friend"],
-    photo: "assets/photos/ayushi1.jpeg",
+    photo: "assets/photos/ayushi1.jpg",
     message: "Happy birthday to the one who’s been my constant for more than a decade now ♥️  From all our stupid jokes and late night gossip sessions to the kind of memories only we could ever make, you’re a part of my heart I carry everywhere.  Even miles apart, nothing really changes. You’re still my person.  I miss you more than I say, and I celebrate you always.  Here’s to everything we’ve lived and everything still waiting for us!!! HBD Sumu, you deserve all the happiness this world has to offer fr. Missing you while I’m writing this. Can’t wait to see you! 😘"
   },
 ];
@@ -291,7 +291,7 @@ const galleryPhotos = [
   { src: "assets/photos/IMG_9751.jpg", caption: "stylish" },
   { src: "assets/photos/photo1.jpg", caption: "home time" },
   { src: "assets/photos/photo2.jpg", caption: "event ready" },
-  { src: "assets/photos/IMG_7842.jpg", caption: "Family time" },
+  { src: "assets/photos/IMG_7842.png", caption: "Family time" },
   { src: "assets/photos/ayushi2.jpg", caption: "Friends forever" },
   { src: "assets/photos/ayushi3.jpg", caption: "Friends forever" },
 ];
